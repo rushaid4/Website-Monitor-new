@@ -11,7 +11,7 @@ const sendSMS = require('./sendSMS')
 const sendCall = require('./sendCall');
 
 const app = express();
-const port = 5000;
+const port = 1000;
 
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key'; 
