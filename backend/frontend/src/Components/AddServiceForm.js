@@ -105,15 +105,6 @@ const AddServiceForm = ({ onAddService }) => {
     }
   };
 
-  // const handleUrlChange = (e) => {
-  //   const inputValue = e.target.value;
-    // if (!inputValue.startsWith('https://')) {
-    //   setUrl(`https://${inputValue}`);
-    // } else {
-    //   setUrl(inputValue);
-    // }
-  //   setUrl(inputValue);
-  // };
 
     // URL validation function
     const validateUrl = (url) => {
