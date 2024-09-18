@@ -27,7 +27,7 @@ app.get('/api', (req, res) => {
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://website-monitor-new.vercel.app',
     methods: ["GET","POST","DELETE", "PUT"]
   },
 })

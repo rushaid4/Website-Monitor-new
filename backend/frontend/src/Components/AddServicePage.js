@@ -35,14 +35,13 @@ const AddServicePage = () => {
 
       const response = await axios.post(`${window.location.origin}${endpoint}`, service);
     
-      // alert(response.data.message);
       console.log('Service added successfully:', response.data);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        // alert(error.response.data || error.response.data); 
+        console.error(error.response.data || error.response.data); 
       } else {
         console.log("An error occured")
-        // alert("An unexpected error occurred.");
+        console.error("An unexpected error occurred.");
       }
     }  
   };
