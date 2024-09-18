@@ -17,12 +17,12 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key'; 
 
 app.use(bodyParser.json());
-// app.use(cors())
-app.use(cors({
-  origin: 'http://localhost:3000', // Ensure this matches your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true // If you're sending credentials like cookies
-}));
+app.use(cors())
+// app.use(cors({
+//   origin: 'http://localhost:3000', 
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true 
+// }));
 app.use(express.json());
 
 app.get('/api', (req, res) => {
@@ -32,10 +32,18 @@ app.get('/api', (req, res) => {
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: process.env.NODE_ENV === 'production' ? 'https://website-monitor-new.vercel.app/' : 'http://localhost:3000',
     methods: ["GET","POST","DELETE", "PUT"]
   },
 })
+
+// const server = http.createServer(app)
+// const io = new Server(server, {
+//   cors: {
+//     origin: 'http://localhost:3000',
+//     methods: ["GET","POST","DELETE", "PUT"]
+//   },
+// })
 
 io.on('connection', (socket) => {
   console.log('New client connected');
@@ -127,12 +135,16 @@ setInterval(() => {
 
 
 
-app.get("/", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "frontend", "build")));
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+// app.get("/", (req, res) => {
+//   app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+//   res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+// });
+
+app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
 });
-
-
 
 
 app.post('/add-service' , async (req, res) => {
