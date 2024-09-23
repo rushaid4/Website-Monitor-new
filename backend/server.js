@@ -28,7 +28,8 @@ const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
     origin: 'https://website-monitor-new.vercel.app/',
-    methods: ["GET","POST","DELETE", "PUT"]
+    methods: ["GET","POST"],
+    credentials: true,
   },
 })
 
