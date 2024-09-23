@@ -38,6 +38,11 @@ const HomePage = ({ isLoggedIn, handleLogout }) => {
       );
     });
 
+    socket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+      // Implement a backoff strategy or limit reconnection attempts
+    });
+
     // Cleanup on component unmount
     return () => {
       socket.off("serviceStatusUpdated");
