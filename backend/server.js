@@ -33,6 +33,7 @@ const io = new Server(server, {
 })
 
 io.on('connection', (socket) => {
+  console.log('New client connected:', socket.id);
   console.log('New client connected');
   
   // You can handle client events here if needed

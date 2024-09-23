@@ -17,7 +17,8 @@ const HomePage = ({ isLoggedIn, handleLogout }) => {
   const navigate = useNavigate();
   // const socket = io("http://localhost:5000");
   // const socket = io(`${window.location.origin}`);
-  const socket = io("https://website-monitor-new.vercel.app/api/socket");
+  const socket = io("https://website-monitor-new.vercel.app");
+
 
     useEffect(() => {
     fetchServices();
